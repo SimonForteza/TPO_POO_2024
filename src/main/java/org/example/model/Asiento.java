@@ -16,4 +16,16 @@ public class Asiento {
     public boolean isOcupado() {
         return ocupado;
     }
+
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
+
+    @Override
+    public String toString() {
+        return "Asiento{" +
+                "numeroAsiento=" + numeroAsiento +
+                ", ocupado=" + ocupado +
+                '}';
+    }
 }

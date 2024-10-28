@@ -3,17 +3,24 @@ package org.example.model;
 import java.util.Date;
 
 public class Entrada {
+    private static int contador = 0;
     private int id;
-    private Socio socio;
-    private Asiento asiento;
-    private double precio;
+    private Sector sector;
     private Date fecha;
 
-    public Entrada(int id, Socio socio, Asiento asiento, double precio, Date fecha) {
-        this.id = id;
-        this.socio = socio;
-        this.asiento = asiento;
-        this.precio = precio;
-        this.fecha = fecha;
+    public Entrada(Sector sector) {
+        this.sector = sector;
+        this.fecha = new Date();
+        this.id = ++contador;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Entrada{" +
+                "id=" + id +
+                ", sector=" + sector +
+                ", fecha=" + fecha +
+                '}';
     }
 }
