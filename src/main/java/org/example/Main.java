@@ -7,10 +7,5 @@ import org.example.model.Socio;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Socio socio1 = new Socio(121, "simon", "apellido", "aa", 111, true);
-        Sector sanMartin = new Sector("San Martin", 5);
-        socio1.sacarEntrada(sanMartin,1);
-        //socio1.sacarEntrada(sanMartin,2);
-        socio1.getEntradas();
     }
 }

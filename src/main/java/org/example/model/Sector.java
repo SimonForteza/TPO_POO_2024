@@ -5,61 +5,39 @@ import java.util.List;
 
 public class Sector {
     private String nombreSector;
-    private int capacidad;
-    private int precio;
-    List<Asiento> asientos;
+    Altura alta;
+    Altura media;
+    Altura baja;
+
 
     public Sector(String nombreSector, int capacidad) {
         this.nombreSector = nombreSector;
-        this.capacidad = capacidad;
-        this.asientos = new ArrayList<>();
 
-        for (int i = 1; i < capacidad; i++) {
-            asientos.add(new Asiento(i, false));
+        if (nombreSector.equals("Belgrano") || nombreSector.equals("San Martin")) {
+            this.alta = new AlturaNoNumerada("alta", capacidad);
+            this.media = new AlturaNumerada("media", capacidad);
+            this.baja = new AlturaNumerada("baja", capacidad);
+        } else if (nombreSector.equals("Sivori") || nombreSector.equals("Centenario")) {
+            this.alta = new AlturaNoNumerada("alta", capacidad);
+            this.media = new AlturaNumerada("media", capacidad);
+            this.baja = new AlturaNoNumerada("baja", capacidad);
         }
     }
-
-    public void agregarAsiento(int numeroAsiento) {
-        for (Asiento asiento: asientos) {
-            if (numeroAsiento == asiento.getNumeroAsiento() && verficarDisponibilidad(numeroAsiento)) {
-                asiento.setOcupado(true);
-                return;
-            }
-        }
-        System.out.println("El número de asiento no esta disponible");
-
-    }
-
-
-    public boolean verficarDisponibilidad(int numeroAsiento) {
-        for (Asiento asiento: asientos) {
-            if (numeroAsiento == asiento.getNumeroAsiento() && !asiento.isOcupado()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
 
     public String getNombreSector() {
         return nombreSector;
     }
 
-    public int getCapacidad() {
-        return capacidad;
+    public Altura getAlta() {
+        return alta;
     }
 
-    public List<Asiento> getAsientos() {
-        return asientos;
+    public Altura getMedia() {
+        return media;
     }
 
-    @Override
-    public String toString() {
-        return "Sector{" +
-                "nombreSector='" + nombreSector + '\'' +
-                ", capacidad=" + capacidad +
-                ", precio=" + precio +
-                ", asientos=" + asientos.toString() +
-                '}';
+    public Altura getBaja() {
+        return baja;
     }
+
 }

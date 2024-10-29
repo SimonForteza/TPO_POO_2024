@@ -1,0 +1,48 @@
+@startuml
+abstract class Altura {
+    #nombreAltura: String
+    #esNumerada: boolean
+    #capacidad: int
+    +abstract crearEntrada()
+}
+
+class AlturaNumerada {
+    +crearEntrada()
+}
+
+class AlturaNoNumerada {
+    +crearEntrada()
+}
+
+
+class Sector {
+   nombre: String
+}
+
+
+class Entrada{
+    id: int
+    sector: String
+    altura: String
+    numeroAsiento: Integer
+    ocupada: boolean
+    fecha: Date
+}
+
+class Socio {
+    -numeroSocio: int
+    -dni: int
+    -nombre: String
+    -apellido: String
+    -cuotaPaga
+
+    +sacarEntrada(entrada: Entrada)
+}
+
+Altura *-- Entrada
+Altura <|-- AlturaNoNumerada
+Altura <|-- AlturaNumerada
+Sector *-- Altura
+Entrada *--* Socio
+
+@enduml

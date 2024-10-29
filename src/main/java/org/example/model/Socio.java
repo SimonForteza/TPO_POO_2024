@@ -5,38 +5,21 @@ import java.util.Date;
 import java.util.List;
 
 public class Socio {
+    private static int socioContador = 0;
     private int numeroSocio;
+    private int dni;
     private String nombre;
     private String apellido;
-    private String email;
-    private int telefono;
     private boolean cuotaPaga;
     private List<Entrada> entradasSacadas;
 
-    public Socio(int numeroSocio, String nombre, String apellido, String email, int telefono, boolean cuotaPaga) {
-        this.numeroSocio = numeroSocio;
+    public Socio(int dni, String nombre, String apellido) {
+        this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.email = email;
-        this.telefono = telefono;
-        this.cuotaPaga = cuotaPaga;
-        this.entradasSacadas = new ArrayList<>();
+        numeroSocio = ++socioContador;
+        entradasSacadas = new ArrayList<>();
     }
 
-    public void sacarEntrada(Sector sector, int numeroAsiento) {
-        if (sector.verficarDisponibilidad(numeroAsiento)) {
-            Entrada entrada = new Entrada(sector);
-            sector.agregarAsiento(numeroAsiento);
-            entradasSacadas.add(entrada);
-        }
-    }
-
-
-
-    public void getEntradas(){
-        for(Entrada entrada : entradasSacadas){
-            System.out.println(entrada.toString());
-        }
-    }
-
+    //public void sacarEntrada(Entrada entrada){}
 }
