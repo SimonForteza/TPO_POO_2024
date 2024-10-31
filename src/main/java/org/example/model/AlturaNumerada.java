@@ -1,17 +1,28 @@
 package org.example.model;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlturaNumerada extends Altura{
+    private List<Asiento> asientos;
 
-    public AlturaNumerada(String nombreAltura, int capacidad) {
-        super(nombreAltura, capacidad, true);
+    public AlturaNumerada(int capacidad) {
+        super(capacidad);
+        asientos = new ArrayList<>();
+
+        for (int i = 0; i < capacidad; i++) {
+            asientos.add(new Asiento(i));
+        }
     }
 
     @Override
-    public void crearEntrada() {
-        for (int i = 0; i <= capacidad; i++) {
-            entradas.add(new Entrada(null, nombreAltura, i, new Date()));
+    public boolean reservarLugares(int numeroAsiento) { // podria devolver un boolean
+        for (Asiento asiento: asientos) {
+            if (asiento.getNumeroAsiento() == numeroAsiento) {
+                asiento.ocupar();
+                return true;
+            }
         }
+       return false;
     }
 }

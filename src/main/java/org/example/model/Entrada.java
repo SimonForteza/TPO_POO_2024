@@ -21,4 +21,8 @@ public class Entrada {
         this.fecha = new Date();
     }
 
+    public void setSocio(Socio socio) {
+            this.socio = socio;
+            ocupada = true;
+    }
 }

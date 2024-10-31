@@ -1,48 +1,42 @@
 @startuml
-abstract class Altura {
-    #nombreAltura: String
-    #esNumerada: boolean
-    #capacidad: int
-    +abstract crearEntrada()
+abstract class Altura{
+    -capacidad: int
+    +abstract crearLugares
 }
 
-class AlturaNumerada {
-    +crearEntrada()
+class AlturaNumerada{}
+class AlturaSinNumerar{}
+
+class Asiento{
+    -numeroAsiento
+    -estaOcupado
 }
 
-class AlturaNoNumerada {
-    +crearEntrada()
+abstract class Sector{
+    -nombre
+    +abstract reservarLugar()
 }
 
+class Belgrano{}
+class SanMartin{}
+class Sivori{}
+class Centenario{}
 
-class Sector {
-   nombre: String
+class Partido {
+    -fecha: Date
 }
 
-
-class Entrada{
-    id: int
-    sector: String
-    altura: String
-    numeroAsiento: Integer
-    ocupada: boolean
-    fecha: Date
-}
-
-class Socio {
-    -numeroSocio: int
-    -dni: int
-    -nombre: String
-    -apellido: String
-    -cuotaPaga
-
-    +sacarEntrada(entrada: Entrada)
-}
-
-Altura *-- Entrada
-Altura <|-- AlturaNoNumerada
 Altura <|-- AlturaNumerada
-Sector *-- Altura
-Entrada *--* Socio
+Altura <|-- AlturaSinNumerar
+
+Altura *-- Sector
+AlturaNumerada *-- Asiento
+
+Sector <|-- Belgrano
+Sector <|-- SanMartin
+Sector <|-- Sivori
+Sector <|-- Centenario
+
+Partido *-- Sector
 
 @enduml

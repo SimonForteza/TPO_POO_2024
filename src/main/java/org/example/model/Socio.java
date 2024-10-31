@@ -21,5 +21,7 @@ public class Socio {
         entradasSacadas = new ArrayList<>();
     }
 
-    //public void sacarEntrada(Entrada entrada){}
+//    public void sacarEntrada(String nombreSector, String Altura, Integer numeroAsiento){
+//
+//    }
 }
