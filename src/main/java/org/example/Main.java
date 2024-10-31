@@ -8,6 +8,6 @@ import org.example.model.AlturaNumerada;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Altura altura1 = new AlturaNumerada(10);
+
     }
 }
