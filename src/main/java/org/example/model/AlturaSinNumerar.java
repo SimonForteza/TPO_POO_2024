@@ -1,8 +1,8 @@
 package org.example.model;
 
 public class AlturaSinNumerar extends Altura{
-    public AlturaSinNumerar(int capacidad) {
-        super(capacidad);
+    public AlturaSinNumerar(int capacidad, int precio) {
+        super(capacidad, precio);
     }
 
     @Override

@@ -5,24 +5,32 @@ import java.util.Date;
 public class Entrada {
     private static int contador = 0;
     private int id;
+    private Partido partido;
+    private Sector sector;
+    private Altura altura;
     private Integer numeroAsiento;
-    private String sector;
-    private String altura;
-    private boolean ocupada;
-    private Socio socio; // Socio propietario de la entrada
+    private double precio;
     private Date fecha;
+    private EstadoEntrada estado;
 
-    public Entrada(String sector, String altura, Integer numeroAsiento, Date fecha) {
+    public Entrada(Partido partido, Sector sector, Altura altura, Integer numeroAsiento) {
         this.id = ++contador;
-        this.numeroAsiento = numeroAsiento;
+        this.partido = partido;
         this.sector = sector;
         this.altura = altura;
-        this.ocupada = false;
+        this.numeroAsiento = numeroAsiento;
+        this.precio = calcularPrecio();
         this.fecha = new Date();
+        this.fecha = new Date();
+        this.estado = EstadoEntrada.ACTIVA;
     }
 
-    public void setSocio(Socio socio) {
-            this.socio = socio;
-            ocupada = true;
+    private double calcularPrecio() {
+        return partido.getPrecioBase() * altura.getPrecio();
     }
+
+    public void cancelar() {
+
+    }
+
 }

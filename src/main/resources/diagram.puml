@@ -1,7 +1,8 @@
 @startuml
 abstract class Altura{
-    -capacidad: int
-    +abstract crearLugares(): boolean
+    #capacidad: int
+    -precio: double
+    +abstract reservarLugares(): boolean
 }
 
 class AlturaNumerada{}
@@ -10,6 +11,8 @@ class AlturaSinNumerar{}
 class Asiento{
     -numeroAsiento
     -estaOcupado
+    +ocupar()
+    +liberar()
 }
 
 abstract class Sector{
@@ -22,8 +25,29 @@ class SanMartin{}
 class Sivori{}
 class Centenario{}
 
-class Partido {
+class Estadio {
     -fecha: Date
+    +reservarSector(nombreSector: String, altura: String, numeroAsiento: int): void
+}
+
+class Partido{
+    -equipoLocal: String
+    -equipoVisitante: String
+    -Fecha: Date
+    -precioBase: double
+}
+
+class Entrada{
+    -id: int
+    -numeroAsiento: Integer
+    -precio: double
+    -fecha: Date
+
+}
+
+enum EstadoEntrada {
+    ACTIVA
+    CANCELADA
 }
 
 Altura <|-- AlturaNumerada
@@ -37,6 +61,13 @@ Sector <|-- SanMartin
 Sector <|-- Sivori
 Sector <|-- Centenario
 
-Partido *-- Sector
+Estadio *-- Sector
+
+Entrada o-- Partido
+Entrada o-- Sector
+Entrada o-- Altura
+Entrada --> EstadoEntrada
+
+Partido *-- Estadio
 
 @enduml

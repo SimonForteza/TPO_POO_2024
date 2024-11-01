@@ -20,4 +20,8 @@ public class Asiento {
     public void ocupar() {
         this.ocupado = true;
     }
+
+    public void liberar() {
+        this.ocupado = false;
+    }
 }

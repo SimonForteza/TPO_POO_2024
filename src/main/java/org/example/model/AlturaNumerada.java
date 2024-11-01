@@ -6,8 +6,8 @@ import java.util.List;
 public class AlturaNumerada extends Altura{
     private List<Asiento> asientos;
 
-    public AlturaNumerada(int capacidad) {
-        super(capacidad);
+    public AlturaNumerada(int capacidad, int precio) {
+        super(capacidad, precio);
         asientos = new ArrayList<>();
 
         for (int i = 0; i < capacidad; i++) {
