@@ -5,6 +5,7 @@ import java.util.Date;
 public class Entrada {
     private static int contador = 0;
     private int id;
+    private Socio socio;
     private Partido partido;
     private String sector;
     private String altura;
@@ -13,8 +14,9 @@ public class Entrada {
     private Date fecha;
     private EstadoEntrada estado;
 
-    public Entrada(Partido partido, String sector, String altura, Integer numeroAsiento) {
+    public Entrada(Socio socio, Partido partido, String sector, String altura, Integer numeroAsiento) {
         this.id = ++contador;
+        this.socio = socio;
         this.partido = partido;
         this.sector = sector;
         this.altura = altura;

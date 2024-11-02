@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 public class Sistema {
 
+    //private ListaNegra listaNegra;
     List<Partido> partidos;
     List<Socio> socios;
 

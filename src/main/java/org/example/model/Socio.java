@@ -17,13 +17,18 @@ public class Socio {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.cuotaPaga = true;
         numeroSocio = ++socioContador;
         entradasSacadas = new ArrayList<>();
     }
 
     public void sacarEntrada(Partido partido, String nombreSector, String altura, Integer numeroAsiento){
-        Entrada entrada = new Entrada(partido, nombreSector, altura, numeroAsiento);
-        entradasSacadas.add(entrada);
+        if (cuotaPaga) {
+            Entrada entrada = new Entrada(this, partido, nombreSector, altura, numeroAsiento);
+            entradasSacadas.add(entrada);
+            return;
+        }
+        System.out.println("La cuota no está al dia");
     }
 
     public int getDni() {
