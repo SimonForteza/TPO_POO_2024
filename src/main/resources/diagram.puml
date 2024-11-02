@@ -26,7 +26,6 @@ class Sivori{}
 class Centenario{}
 
 class Estadio {
-    -fecha: Date
     +reservarSector(nombreSector: String, altura: String, numeroAsiento: int): void
 }
 
@@ -53,7 +52,7 @@ enum EstadoEntrada {
 Altura <|-- AlturaNumerada
 Altura <|-- AlturaSinNumerar
 
-Altura *-- Sector
+Altura --* Sector
 AlturaNumerada *-- Asiento
 
 Sector <|-- Belgrano
@@ -63,7 +62,7 @@ Sector <|-- Centenario
 
 Estadio *-- Sector
 
-Entrada o-- Partido
+Entrada *--o Partido
 Entrada o-- Sector
 Entrada o-- Altura
 Entrada --> EstadoEntrada

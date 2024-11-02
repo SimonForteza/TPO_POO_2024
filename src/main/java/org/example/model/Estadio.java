@@ -3,11 +3,9 @@ package org.example.model;
 import java.util.*;
 
 public class Estadio {
-    private Date fecha;
     List<Sector>sectores;
 
-    public Estadio(Date fecha) {
-        this.fecha = fecha;
+    public Estadio() {
         sectores = new ArrayList<>();
 
         sectores.add(new Belgrano("belgrano"));

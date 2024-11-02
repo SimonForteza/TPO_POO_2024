@@ -21,7 +21,12 @@ public class Socio {
         entradasSacadas = new ArrayList<>();
     }
 
-//    public void sacarEntrada(String nombreSector, String Altura, Integer numeroAsiento){
-//
-//    }
+    public void sacarEntrada(Partido partido, String nombreSector, String altura, Integer numeroAsiento){
+        Entrada entrada = new Entrada(partido, nombreSector, altura, numeroAsiento);
+        entradasSacadas.add(entrada);
+    }
+
+    public int getDni() {
+        return dni;
+    }
 }

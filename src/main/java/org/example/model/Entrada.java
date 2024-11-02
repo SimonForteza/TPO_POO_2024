@@ -6,31 +6,32 @@ public class Entrada {
     private static int contador = 0;
     private int id;
     private Partido partido;
-    private Sector sector;
-    private Altura altura;
+    private String sector;
+    private String altura;
     private Integer numeroAsiento;
     private double precio;
     private Date fecha;
     private EstadoEntrada estado;
 
-    public Entrada(Partido partido, Sector sector, Altura altura, Integer numeroAsiento) {
+    public Entrada(Partido partido, String sector, String altura, Integer numeroAsiento) {
         this.id = ++contador;
         this.partido = partido;
         this.sector = sector;
         this.altura = altura;
         this.numeroAsiento = numeroAsiento;
-        this.precio = calcularPrecio();
+        this.precio = 10000;
         this.fecha = new Date();
         this.fecha = new Date();
         this.estado = EstadoEntrada.ACTIVA;
+
+        crearEntrada();
     }
 
-    private double calcularPrecio() {
-        return partido.getPrecioBase() * altura.getPrecio();
+    private void crearEntrada() {
+        partido.reservarEstadio(sector, altura, numeroAsiento);
+        partido.agregarEntrada(this);
     }
 
-    public void cancelar() {
 
-    }
 
 }
