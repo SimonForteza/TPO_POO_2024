@@ -23,7 +23,6 @@ public class Entrada {
         this.numeroAsiento = numeroAsiento;
         this.precio = 10000;
         this.fecha = new Date();
-        this.fecha = new Date();
         this.estado = EstadoEntrada.ACTIVA;
 
         crearEntrada();

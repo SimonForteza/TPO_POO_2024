@@ -50,7 +50,6 @@ public class Sistema {
 
         // Verificar si se encontró el socio y el partido en la fecha indicada
         if (socioEncontrado != null && partidoEncontrado != null) {
-            // Intentar sacar la entrada para el socio
             socioEncontrado.sacarEntrada(partidoEncontrado, nombreSector, altura, numeroAsiento);
         } else {
             System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");
