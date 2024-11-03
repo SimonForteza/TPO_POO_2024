@@ -56,6 +56,42 @@ public class Sistema {
         }
     }
 
+
+
+    public void sacarEntrada(int dni, String fechaPartido, String nombreSector, String altura) {
+        Socio socioEncontrado = null;
+        Partido partidoEncontrado = null;
+
+        // Buscar socio por DNI
+        for (Socio socio : socios) {
+            if (socio.getDni() == dni) {
+                socioEncontrado = socio;
+                break;
+            }
+        }
+
+        // Convertir la fecha de cadena a Date y buscar el partido correspondiente
+        Date fechaBuscada = convertirADate(fechaPartido);
+        for (Partido partido : partidos) {
+            if (esMismaFecha(partido.getFecha(), fechaBuscada)) {
+                partidoEncontrado = partido;
+                break;
+            }
+        }
+
+        // Verificar si se encontró el socio y el partido en la fecha indicada
+        if (socioEncontrado != null && partidoEncontrado != null) {
+            socioEncontrado.sacarEntrada(partidoEncontrado, nombreSector, altura);
+        } else {
+            System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");
+        }
+    }
+
+
+
+
+
+
     // Método auxiliar para comparar solo la parte de fecha (ignora la hora)
     private boolean esMismaFecha(Date fecha1, Date fecha2) {
         Calendar cal1 = Calendar.getInstance();

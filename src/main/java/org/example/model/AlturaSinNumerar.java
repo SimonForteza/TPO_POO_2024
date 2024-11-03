@@ -6,7 +6,7 @@ public class AlturaSinNumerar extends Altura{
     }
 
     @Override
-    public boolean reservarLugares(int numeroAsiento) {
+    public boolean reservarLugares(Integer numeroAsiento) {
         if (capacidad > 0) {
             capacidad--;
             return true;

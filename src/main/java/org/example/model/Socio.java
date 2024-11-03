@@ -24,7 +24,20 @@ public class Socio {
 
     public void sacarEntrada(Partido partido, String nombreSector, String altura, Integer numeroAsiento){
         if (cuotaPaga) {
+            partido.reservarEstadio(nombreSector, altura, numeroAsiento);
+
             Entrada entrada = new Entrada(this, partido, nombreSector, altura, numeroAsiento);
+            entradasSacadas.add(entrada);
+            return;
+        }
+        System.out.println("La cuota no está al dia");
+    }
+
+    public void sacarEntrada(Partido partido, String nombreSector, String altura){
+        if (cuotaPaga) {
+            partido.reservarEstadio(nombreSector, altura);
+
+            Entrada entrada = new Entrada(this, partido, nombreSector, altura);
             entradasSacadas.add(entrada);
             return;
         }

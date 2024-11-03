@@ -26,6 +26,10 @@ public class Partido {
         estadio.reservarSector(nombreSector, altura, numeroAsiento);
     }
 
+    public void reservarEstadio(String nombreSector, String altura) {
+        estadio.reservarSector(nombreSector, altura);
+    }
+
     public void agregarEntrada(Entrada entrada) {
         entradas.add(entrada);
     }

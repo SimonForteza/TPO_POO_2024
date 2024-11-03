@@ -10,7 +10,7 @@ public class Main {
         Sistema sistema = new Sistema();
         sistema.crearPartido("river", "boca", 10000, "2024/11/02");
         sistema.crearSocio(46203884, "Simon", "forteza");
-        sistema.sacarEntrada(46203884, "2024/11/2", "belgrano", "alta", 2 );
-
+        sistema.sacarEntrada(46203884, "2024/11/2", "belgrano", "alta");
+        sistema.sacarEntrada(46203884, "2024/11/2", "belgrano", "media", 2);
     }
 }

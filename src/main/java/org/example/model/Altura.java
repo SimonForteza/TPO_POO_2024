@@ -9,7 +9,7 @@ public abstract class Altura {
         this.precio = precio;
     }
 
-    public abstract boolean reservarLugares(int numeroAsiento);
+    public abstract boolean reservarLugares(Integer numeroAsiento);
 
     public int getPrecio() {
         return precio;

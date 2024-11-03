@@ -28,11 +28,21 @@ public class Entrada {
         crearEntrada();
     }
 
-    private void crearEntrada() {
-        partido.reservarEstadio(sector, altura, numeroAsiento);
-        partido.agregarEntrada(this);
+    public Entrada(Socio socio, Partido partido, String sector, String altura) {
+        this.id = ++contador;
+        this.socio = socio;
+        this.partido = partido;
+        this.sector = sector;
+        this.altura = altura;
+        this.precio = 10000;
+        this.fecha = new Date();
+        this.estado = EstadoEntrada.ACTIVA;
+
+        crearEntrada();
     }
 
-
+    private void crearEntrada() {
+        partido.agregarEntrada(this);
+    }
 
 }

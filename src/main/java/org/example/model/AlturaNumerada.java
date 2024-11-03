@@ -2,6 +2,7 @@ package org.example.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AlturaNumerada extends Altura{
     private List<Asiento> asientos;
@@ -16,13 +17,15 @@ public class AlturaNumerada extends Altura{
     }
 
     @Override
-    public boolean reservarLugares(int numeroAsiento) { // podria devolver un boolean
-        for (Asiento asiento: asientos) {
-            if (asiento.getNumeroAsiento() == numeroAsiento) {
-                asiento.ocupar();
-                return true;
+    public boolean reservarLugares(Integer numeroAsiento) {
+        if (!Objects.isNull(numeroAsiento)) {
+            for (Asiento asiento : asientos) {
+                if (asiento.getNumeroAsiento() == numeroAsiento) {
+                    asiento.ocupar();
+                    return true;
+                }
             }
         }
-       return false;
+        return false;
     }
 }
