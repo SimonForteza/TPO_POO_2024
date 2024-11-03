@@ -27,61 +27,24 @@ public class Sistema {
         socios.add(nuevoSocio);
     }
 
-    public void sacarEntrada(int dni, String fechaPartido, String nombreSector, String altura, int numeroAsiento) {
-        Socio socioEncontrado = null;
-        Partido partidoEncontrado = null;
-
-        // Buscar socio por DNI
-        for (Socio socio : socios) {
-            if (socio.getDni() == dni) {
-                socioEncontrado = socio;
-                break;
-            }
-        }
-
-        // Convertir la fecha de cadena a Date y buscar el partido correspondiente
-        Date fechaBuscada = convertirADate(fechaPartido);
-        for (Partido partido : partidos) {
-            if (esMismaFecha(partido.getFecha(), fechaBuscada)) {
-                partidoEncontrado = partido;
-                break;
-            }
-        }
-
-        // Verificar si se encontró el socio y el partido en la fecha indicada
-        if (socioEncontrado != null && partidoEncontrado != null) {
-            socioEncontrado.sacarEntrada(partidoEncontrado, nombreSector, altura, numeroAsiento);
-        } else {
-            System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");
-        }
+    public void sacarEntrada(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento) {
+        realizarReserva(dni, fechaPartido, nombreSector, altura, numeroAsiento);
     }
-
-
 
     public void sacarEntrada(int dni, String fechaPartido, String nombreSector, String altura) {
-        Socio socioEncontrado = null;
-        Partido partidoEncontrado = null;
+        realizarReserva(dni, fechaPartido, nombreSector, altura, null);
+    }
 
-        // Buscar socio por DNI
-        for (Socio socio : socios) {
-            if (socio.getDni() == dni) {
-                socioEncontrado = socio;
-                break;
-            }
-        }
+    private void realizarReserva(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento) {
+        Socio socioEncontrado = buscarSocioPorDni(dni);
+        Partido partidoEncontrado = buscarPartidoPorFecha(fechaPartido);
 
-        // Convertir la fecha de cadena a Date y buscar el partido correspondiente
-        Date fechaBuscada = convertirADate(fechaPartido);
-        for (Partido partido : partidos) {
-            if (esMismaFecha(partido.getFecha(), fechaBuscada)) {
-                partidoEncontrado = partido;
-                break;
-            }
-        }
-
-        // Verificar si se encontró el socio y el partido en la fecha indicada
         if (socioEncontrado != null && partidoEncontrado != null) {
-            socioEncontrado.sacarEntrada(partidoEncontrado, nombreSector, altura);
+            if (numeroAsiento != null) {
+                socioEncontrado.sacarEntrada(partidoEncontrado, nombreSector, altura, numeroAsiento);
+            } else {
+                socioEncontrado.sacarEntrada(partidoEncontrado, nombreSector, altura);
+            }
         } else {
             System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");
         }
@@ -90,7 +53,24 @@ public class Sistema {
 
 
 
+    private Socio buscarSocioPorDni(int dni) {
+        for (Socio socio : socios) {
+            if (socio.getDni() == dni) {
+                return socio; // Retorna el socio encontrado
+            }
+        }
+        return null; // Si no se encontró, retorna null
+    }
 
+    private Partido buscarPartidoPorFecha(String fechaPartido) {
+        Date fechaBuscada = convertirADate(fechaPartido);
+        for (Partido partido : partidos) {
+            if (esMismaFecha(partido.getFecha(), fechaBuscada)) {
+                return partido; // Retorna el partido encontrado
+            }
+        }
+        return null; // Si no se encontró, retorna null
+    }
 
     // Método auxiliar para comparar solo la parte de fecha (ignora la hora)
     private boolean esMismaFecha(Date fecha1, Date fecha2) {
