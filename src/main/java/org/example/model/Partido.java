@@ -30,6 +30,16 @@ public class Partido {
         estadio.reservarSector(nombreSector, altura);
     }
 
+    public void liberarEstadio(String nombreSector, String altura, int numeroAsiento) {
+        estadio.liberarSector(nombreSector, altura, numeroAsiento);
+    }
+
+    public void liberarEstadio(String nombreSector, String altura) {
+        estadio.liberarSector(nombreSector, altura);
+    }
+
+
+
     public void agregarEntrada(Entrada entrada) {
         entradas.add(entrada);
     }

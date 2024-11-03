@@ -2,7 +2,9 @@
 abstract class Altura{
     #capacidad: int
     -precio: double
-    +abstract reservarLugares(): boolean
+    +abstract reservarLugares(numeroAsiento: Integer): boolean
+    +abstract liberarLugares(numeroAsiento: Integer): boolean
+
 }
 
 class AlturaNumerada{}
@@ -17,7 +19,10 @@ class Asiento{
 
 abstract class Sector{
     -nombre
-    +abstract reservarLugar()
+    +reservarAltura(nombreAltura: String, numeroAsiento: int)
+    +reservarAltura(nombreAltura: String)
+    +liberarAltura(nombreAltura: String, numeroAsiento: int)
+    +liberarAltura(nombreAltura: String)
 }
 
 class Belgrano{}
@@ -27,6 +32,9 @@ class Centenario{}
 
 class Estadio {
     +reservarSector(nombreSector: String, altura: String, numeroAsiento: int): void
+    +reservarSector(nombreSector: String, altura: String): void
+    +liberarSector(nombreSector: String, altura: String, numeroAsiento: int): void
+    +liberarSector(nombreSector: String, altura: String): void
 }
 
 class Partido{
@@ -34,6 +42,11 @@ class Partido{
     -equipoVisitante: String
     -Fecha: Date
     -precioBase: double
+
+    +reservarEstadio(nombreSector: String, altura: String, numeroAsiento: int)
+    +reservarEstadio(nombreSector: String, altura: String)
+    +liberarEstadio(nombreSector: String, altura: String, numeroAsiento: int)
+    +liberarEstadio(nombreSector: String, altura: String)
 }
 
 class Entrada{
@@ -68,7 +81,7 @@ class Sistema{
 Sistema *-- Partido
 Sistema *-- Socio
 
-socio o-- Entrada
+Socio o-- Entrada
 
 Altura <|-- AlturaNumerada
 Altura <|-- AlturaSinNumerar
@@ -84,8 +97,6 @@ Sector <|-- Centenario
 Estadio *-- Sector
 
 Entrada *--o Partido
-Entrada o-- Sector
-Entrada o-- Altura
 Entrada --> EstadoEntrada
 
 Partido *-- Estadio

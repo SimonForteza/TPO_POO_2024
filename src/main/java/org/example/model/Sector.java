@@ -27,6 +27,16 @@ public abstract class Sector {
         altura.reservarLugares(null);
     }
 
+    public void liberarAltura(String nombreAltura, int numeroAsiento) {
+        Altura altura = getAltura(nombreAltura);
+        altura.liberarLugares(numeroAsiento);
+    }
+
+    public void liberarAltura(String nombreAltura) {
+        Altura altura = getAltura(nombreAltura);
+        altura.liberarLugares(null);
+    }
+
     private Altura getAltura(String nombreAltura) {
         Map<String, Altura> alturas = Map.of(
                 "alta", alta,

@@ -18,14 +18,34 @@ public class AlturaNumerada extends Altura{
 
     @Override
     public boolean reservarLugares(Integer numeroAsiento) {
-        if (!Objects.isNull(numeroAsiento)) {
-            for (Asiento asiento : asientos) {
-                if (asiento.getNumeroAsiento() == numeroAsiento) {
-                    asiento.ocupar();
-                    return true;
-                }
-            }
+        Asiento asiento = buscarAsiento(numeroAsiento);
+        if (!Objects.isNull(asiento)) {
+            asiento.ocupar();
+            return true;
         }
         return false;
     }
+
+    @Override
+    public boolean liberarLugares(Integer numeroAsiento) {
+        Asiento asiento = buscarAsiento(numeroAsiento);
+        if (!Objects.isNull(asiento)) {
+            asiento.liberar();
+            return true;
+        }
+        return false;
+    }
+
+
+    private Asiento buscarAsiento(Integer numeroAsiento) {
+        if (!Objects.isNull(numeroAsiento)) {
+            for (Asiento asiento : asientos) {
+                if (asiento.getNumeroAsiento() == numeroAsiento) {
+                    return asiento;
+                }
+            }
+        }
+        return null;
+    }
+
 }

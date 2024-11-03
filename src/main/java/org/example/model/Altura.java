@@ -10,6 +10,7 @@ public abstract class Altura {
     }
 
     public abstract boolean reservarLugares(Integer numeroAsiento);
+    public abstract boolean liberarLugares(Integer numeroAsiento);
 
     public int getPrecio() {
         return precio;

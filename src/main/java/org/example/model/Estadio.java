@@ -15,23 +15,48 @@ public class Estadio {
     }
 
     public void reservarSector(String nombreSector, String altura, int numeroAsiento) {
-        for (Sector sector: sectores) {
-            if (nombreSector.equals(sector.getNombreSector())) {
-                sector.reservarAltura(altura, numeroAsiento);
-                return;
-            }
+        Sector sector = encontrarSector(nombreSector);
+        if (!Objects.isNull(sector)) {
+            sector.reservarAltura(altura, numeroAsiento);
+        } else {
+            System.out.println("El nombre del sector no se encuentra");
         }
-        System.out.println("el nombre del sector no se encuentra");
     }
 
     public void reservarSector(String nombreSector, String altura) {
-        for (Sector sector: sectores) {
+        Sector sector = encontrarSector(nombreSector);
+        if (!Objects.isNull(sector)) {
+            sector.reservarAltura(altura);
+        } else {
+            System.out.println("El nombre del sector no se encuentra");
+        }
+    }
+
+    public void liberarSector(String nombreSector, String altura, int numeroAsiento) {
+        Sector sector = encontrarSector(nombreSector);
+        if (!Objects.isNull(sector)) {
+            sector.liberarAltura(altura, numeroAsiento);
+        } else {
+            System.out.println("El nombre del sector no se encuentra");
+        }
+    }
+
+    public void liberarSector(String nombreSector, String altura) {
+        Sector sector = encontrarSector(nombreSector);
+        if (!Objects.isNull(sector)) {
+            sector.liberarAltura(altura);
+        } else {
+            System.out.println("El nombre del sector no se encuentra");
+        }
+    }
+
+    private Sector encontrarSector(String nombreSector) {
+        for (Sector sector : sectores) {
             if (nombreSector.equals(sector.getNombreSector())) {
-                sector.reservarAltura(altura);
-                return;
+                return sector;
             }
         }
-        System.out.println("el nombre del sector no se encuentra");
+        return null;
     }
 
 }
