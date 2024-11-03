@@ -31,6 +31,10 @@ public class Socio {
         }
     }
 
+    //public void listarEntradas(){}
+
+
+
 
 
     public void getEntradas(){
