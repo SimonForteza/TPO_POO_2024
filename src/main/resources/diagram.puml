@@ -46,8 +46,29 @@ class Entrada{
 
 enum EstadoEntrada {
     ACTIVA
-    CANCELADA
+    USADA
 }
+
+class Socio {
+    - numeroSocio: int
+    - dni: int
+    - nombre: String;
+    - apellido: String;
+    - cuotaPaga: boolean
+}
+
+class Sistema{
+    +CrearPartido(equipoLocal: String, equipoVisitante: String, precioBase: int, fechaPartido: String): void
+    +crearSocio(dni: int, nombre: String, apellido: String): void
+    +sacarEntrada(dni: int, fecha: String, nombreSector: String, altura: String, numeroAsiento: Integer): void
+    +sacarEntrada(dni: int, fecha: String, nombreSector: String, altura: String): void
+}
+
+
+Sistema *-- Partido
+Sistema *-- Socio
+
+socio o-- Entrada
 
 Altura <|-- AlturaNumerada
 Altura <|-- AlturaSinNumerar
