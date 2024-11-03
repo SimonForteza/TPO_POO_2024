@@ -1,0 +1,104 @@
+@startuml
+abstract class Altura{
+    #capacidad: int
+    -precio: double
+    +abstract reservarLugares(numeroAsiento: Integer): boolean
+    +abstract liberarLugares(numeroAsiento: Integer): boolean
+
+}
+
+class AlturaNumerada{}
+class AlturaSinNumerar{}
+
+class Asiento{
+    -numeroAsiento
+    -estaOcupado
+    +ocupar()
+    +liberar()
+}
+
+abstract class Sector{
+    -nombre
+    +reservarAltura(nombreAltura: String, numeroAsiento: int)
+    +reservarAltura(nombreAltura: String)
+    +liberarAltura(nombreAltura: String, numeroAsiento: int)
+    +liberarAltura(nombreAltura: String)
+}
+
+class Belgrano{}
+class SanMartin{}
+class Sivori{}
+class Centenario{}
+
+class Estadio {
+    +reservarSector(nombreSector: String, altura: String, numeroAsiento: int): void
+    +reservarSector(nombreSector: String, altura: String): void
+    +liberarSector(nombreSector: String, altura: String, numeroAsiento: int): void
+    +liberarSector(nombreSector: String, altura: String): void
+}
+
+class Partido{
+    -equipoLocal: String
+    -equipoVisitante: String
+    -Fecha: Date
+    -precioBase: double
+
+    +reservarEstadio(nombreSector: String, altura: String, numeroAsiento: int)
+    +reservarEstadio(nombreSector: String, altura: String)
+    +liberarEstadio(nombreSector: String, altura: String, numeroAsiento: int)
+    +liberarEstadio(nombreSector: String, altura: String)
+}
+
+class Entrada{
+    -id: int
+    -numeroAsiento: Integer
+    -precio: double
+    -fecha: Date
+
+}
+
+enum EstadoEntrada {
+    ACTIVA
+    USADA
+}
+
+class Socio {
+    - numeroSocio: int
+    - dni: int
+    - nombre: String;
+    - apellido: String;
+    - cuotaPaga: boolean
+}
+
+class Sistema{
+    +CrearPartido(equipoLocal: String, equipoVisitante: String, precioBase: int, fechaPartido: String): void
+    +crearSocio(dni: int, nombre: String, apellido: String): void
+    +sacarEntrada(dni: int, fecha: String, nombreSector: String, altura: String, numeroAsiento: Integer): void
+    +sacarEntrada(dni: int, fecha: String, nombreSector: String, altura: String): void
+}
+
+
+Sistema *-- Partido
+Sistema *-- Socio
+
+Socio o-- Entrada
+
+Altura <|-- AlturaNumerada
+Altura <|-- AlturaSinNumerar
+
+Altura --* Sector
+AlturaNumerada *-- Asiento
+
+Sector <|-- Belgrano
+Sector <|-- SanMartin
+Sector <|-- Sivori
+Sector <|-- Centenario
+
+Estadio *-- Sector
+
+Entrada *--o Partido
+Entrada --> EstadoEntrada
+
+Partido *-- Estadio
+
+@enduml
