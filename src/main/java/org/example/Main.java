@@ -23,7 +23,7 @@ public class Main {
 
         System.out.println("ingrese la fecha partido (año/mes/dia)");
         String fecha = sc.next();
-
+        sc.close();
 
         Sistema sistema = new Sistema();
         sistema.crearPartido(equipoLocal, equipoVisitante, precioBase, fecha);
