@@ -64,4 +64,13 @@ public class Estadio {
     public String getNombreEstadio() {
         return nombreEstadio;
     }
+
+    public double calcularPrecio(String nombreSector, String nombreAltura) {
+        for (Sector sector : sectores) {
+            if (nombreSector.equals(sector.getNombreSector())) {
+                return sector.obtenerPrecio(nombreAltura);
+            }
+        }
+        throw new RuntimeException("No se pudo calcular");
+    }
 }

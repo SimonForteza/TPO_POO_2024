@@ -21,7 +21,7 @@ public class Entrada {
         this.sector = sector;
         this.altura = altura;
         this.numeroAsiento = numeroAsiento;
-        this.precio = 10000;
+        this.precio = calcularPrecio();
         this.fecha = new Date();
         this.estado = EstadoEntrada.ACTIVA;
 
@@ -34,7 +34,7 @@ public class Entrada {
         this.partido = partido;
         this.sector = sector;
         this.altura = altura;
-        this.precio = 10000;
+        this.precio = calcularPrecio();
         this.fecha = new Date();
         this.estado = EstadoEntrada.ACTIVA;
 
@@ -49,8 +49,21 @@ public class Entrada {
         partido.cancelarEntrada(id);
     }
 
+    public double calcularPrecio() {
+        double resultado = partido.getPrecioBase() + partido.calcularPrecio(sector, altura);
+        return resultado;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public double getPrecio() {
+        return precio;
     }
 
     @Override

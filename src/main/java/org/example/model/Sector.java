@@ -37,6 +37,11 @@ public abstract class Sector {
         altura.liberarLugares(null);
     }
 
+    public double obtenerPrecio(String nombreAltura) {
+        Altura altura = getAltura(nombreAltura);
+        return altura.getPrecio();
+    }
+
     private Altura getAltura(String nombreAltura) {
         Map<String, Altura> alturas = Map.of(
                 "alta", alta,

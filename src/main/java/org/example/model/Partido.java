@@ -19,7 +19,6 @@ public class Partido {
         estadio = new Estadio();
         this.fecha = fecha;
         entradas = new ArrayList<>();
-
     }
 
     public void reservarEstadio(String nombreSector, String altura, int numeroAsiento) {
@@ -39,7 +38,6 @@ public class Partido {
     }
 
 
-
     public void agregarEntrada(Entrada entrada) {
         entradas.add(entrada);
     }
@@ -47,6 +45,11 @@ public class Partido {
     public void cancelarEntrada(int idEntrada) {
         entradas.removeIf(entrada -> entrada.getId() == idEntrada);
     }
+
+    public double calcularPrecio(String nombreSector, String nombreAltura) {
+        return estadio.calcularPrecio(nombreSector, nombreAltura);
+    }
+
 
     public String getEquipoLocal() {
         return equipoLocal;
