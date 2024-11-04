@@ -7,13 +7,14 @@ import java.util.Calendar;
 
 public class Sistema {
 
-    //private ListaNegra listaNegra;
+    private ListaNegra listaNegra;
     List<Partido> partidos;
     List<Socio> socios;
 
     public Sistema() {
         this.partidos = new ArrayList<>();
         this.socios = new ArrayList<>();
+        listaNegra = new ListaNegra("C:/Users/forte/Documents/TPO_POO_2024/src/main/resources/listaNegra.txt");
     }
 
     public void crearPartido(String equipoLocal, String equipoVisitante, int precioBase, String fechaPartido){
@@ -28,11 +29,20 @@ public class Sistema {
     }
 
     public void sacarEntrada(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento) {
-        realizarReserva(dni, fechaPartido, nombreSector, altura, numeroAsiento);
+        if (listaNegra.esSocioValido(dni)) {
+            realizarReserva(dni, fechaPartido, nombreSector, altura, numeroAsiento);
+            return;
+        }
+        System.out.println("El socio se encuentra en la lista negra. No puede sacar una entrada");
+
     }
 
     public void sacarEntrada(int dni, String fechaPartido, String nombreSector, String altura) {
-        realizarReserva(dni, fechaPartido, nombreSector, altura, null);
+        if (listaNegra.esSocioValido(dni)) {
+            realizarReserva(dni, fechaPartido, nombreSector, altura, null);
+            return;
+        }
+        System.out.println("El socio se encuentra en la lista negra. No puede sacar una entrada");
     }
 
     private void realizarReserva(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento) {
