@@ -54,21 +54,6 @@ public class Sistema {
         cancelarReserva(dni, fechaPartido, nombreSector, altura, null, idEntrada);
     }
 
-    private void cancelarReserva(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento, int idEntrada) {
-        Socio socioEncontrado = buscarSocioPorDni(dni);
-        Partido partidoEncontrado = buscarPartidoPorFecha(fechaPartido);
-
-        if (socioEncontrado != null && partidoEncontrado != null) {
-            if (numeroAsiento != null) {
-                socioEncontrado.cancelarEntrada(partidoEncontrado, nombreSector, altura, numeroAsiento, idEntrada);
-            } else {
-                socioEncontrado.cancelarEntrada(partidoEncontrado, nombreSector, altura, idEntrada);
-            }
-        } else {
-            System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");
-        }
-    }
-
 
     public void listarSocios() {
         for (Socio socio: socios) {
@@ -84,6 +69,12 @@ public class Sistema {
     }
 
 
+    public void listarPartidos() {
+        for (Partido partido: partidos){
+            System.out.println(partido.toString());
+        }
+    }
+
     private void realizarReserva(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento) {
         Socio socioEncontrado = buscarSocioPorDni(dni);
         Partido partidoEncontrado = buscarPartidoPorFecha(fechaPartido);
@@ -93,6 +84,21 @@ public class Sistema {
                 socioEncontrado.sacarEntrada(partidoEncontrado, nombreSector, altura, numeroAsiento);
             } else {
                 socioEncontrado.sacarEntrada(partidoEncontrado, nombreSector, altura);
+            }
+        } else {
+            System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");
+        }
+    }
+
+    private void cancelarReserva(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento, int idEntrada) {
+        Socio socioEncontrado = buscarSocioPorDni(dni);
+        Partido partidoEncontrado = buscarPartidoPorFecha(fechaPartido);
+
+        if (socioEncontrado != null && partidoEncontrado != null) {
+            if (numeroAsiento != null) {
+                socioEncontrado.cancelarEntrada(partidoEncontrado, nombreSector, altura, numeroAsiento, idEntrada);
+            } else {
+                socioEncontrado.cancelarEntrada(partidoEncontrado, nombreSector, altura, idEntrada);
             }
         } else {
             System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");

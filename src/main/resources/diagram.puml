@@ -68,6 +68,12 @@ class Socio {
     - nombre: String;
     - apellido: String;
     - cuotaPaga: boolean
+
+    +sacarEntrada(partido: Partido, nombreSector: String, altura: String, numeroAsiento: Integer): void
+    +sacarEntrada(partido: Partido, nombreSector: String, altura: String): void
+    +cancelarEntrada(partido: Partido, nombreSector: String, altura: String, numeroAsiento: Interger, idEntrada: int): void
+    +cancelarEntrada(partido: Partido, nombreSector: String, altura: String, idEntrada: int): void
+    +listarEntradas(): void
 }
 
 class ListaNegra {
@@ -80,6 +86,11 @@ class Sistema{
     +crearSocio(dni: int, nombre: String, apellido: String): void
     +sacarEntrada(dni: int, fecha: String, nombreSector: String, altura: String, numeroAsiento: Integer): void
     +sacarEntrada(dni: int, fecha: String, nombreSector: String, altura: String): void
+    +cancelarEntrada(dni: int, fecha: String, nombreSector: String, altura: String, numeroAsiento: Integer, idEntrada: int): void
+    +cancelarEntrada(dni: int, fecha: String, nombreSector: String, altura: String, idEntrada: int): void
+    +listarSocios(): void
+    +listarEntradasSocio(dni: int): void
+    +listarPartidos(): void
 }
 
 

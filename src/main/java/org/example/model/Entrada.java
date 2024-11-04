@@ -57,7 +57,7 @@ public class Entrada {
     public String toString() {
         return "Entrada{" +
                 "id=" + id +
-                ", partido=" + partido +
+                ", partido=" + partido.getFecha() +
                 ", sector='" + sector + '\'' +
                 ", altura='" + altura + '\'' +
                 ", numeroAsiento=" + numeroAsiento +

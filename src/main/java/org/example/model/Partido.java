@@ -63,4 +63,15 @@ public class Partido {
     public Date getFecha() {
         return fecha;
     }
+
+    @Override
+    public String toString() {
+        return "Partido{" +
+                "equipoLocal='" + equipoLocal + '\'' +
+                ", equipoVisitante='" + equipoVisitante + '\'' +
+                ", precioBase=" + precioBase +
+                ", estadio=" + estadio.getNombreEstadio() +
+                ", fecha=" + fecha +
+                '}';
+    }
 }

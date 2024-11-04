@@ -3,6 +3,8 @@ package org.example.model;
 import java.util.*;
 
 public class Estadio {
+
+    private final String nombreEstadio = "Estadio Mas Monumental";
     List<Sector>sectores;
 
     public Estadio() {
@@ -59,4 +61,7 @@ public class Estadio {
         return null;
     }
 
+    public String getNombreEstadio() {
+        return nombreEstadio;
+    }
 }
