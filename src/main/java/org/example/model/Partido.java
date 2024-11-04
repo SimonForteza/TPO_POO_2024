@@ -45,11 +45,7 @@ public class Partido {
     }
 
     public void cancelarEntrada(int idEntrada) {
-        for (Entrada entrada: entradas) {
-            if (entrada.getId() == idEntrada) {
-                entradas.remove(entrada);
-            }
-        }
+        entradas.removeIf(entrada -> entrada.getId() == idEntrada);
     }
 
     public String getEquipoLocal() {

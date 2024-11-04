@@ -52,4 +52,18 @@ public class Entrada {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Entrada{" +
+                "id=" + id +
+                ", partido=" + partido +
+                ", sector='" + sector + '\'' +
+                ", altura='" + altura + '\'' +
+                ", numeroAsiento=" + numeroAsiento +
+                ", precio=" + precio +
+                ", fecha=" + fecha +
+                ", estado=" + estado +
+                '}';
+    }
 }

@@ -51,6 +51,8 @@ public class Socio {
         for (Entrada entrada: entradasSacadas) {
             if (entrada.getId() == idEntrada) {
                 entrada.cancelarEntrada(idEntrada);
+                entradasSacadas.remove(entrada);
+                break;
             }
         }
     }
@@ -61,11 +63,31 @@ public class Socio {
         for (Entrada entrada: entradasSacadas) {
             if (entrada.getId() == idEntrada) {
                 entrada.cancelarEntrada(idEntrada);
+                entradasSacadas.remove(entrada);
+                break;
             }
         }
     }
 
+    public void listarEntradas() {
+        for (Entrada entrada: entradasSacadas) {
+            System.out.println(entrada.toString());
+        }
+    }
+
+
     public int getDni() {
         return dni;
+    }
+
+    @Override
+    public String toString() {
+        return "Socio{" +
+                "numeroSocio=" + numeroSocio +
+                ", dni=" + dni +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", cuotaPaga=" + cuotaPaga +
+                '}';
     }
 }

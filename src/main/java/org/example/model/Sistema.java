@@ -45,6 +45,45 @@ public class Sistema {
         System.out.println("El socio se encuentra en la lista negra. No puede sacar una entrada");
     }
 
+
+    public void cancelarEntrada(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento, int idEntrada) {
+        cancelarReserva(dni, fechaPartido, nombreSector, altura, numeroAsiento, idEntrada);
+    }
+
+    public void cancelarEntrada(int dni, String fechaPartido, String nombreSector, String altura, int idEntrada) {
+        cancelarReserva(dni, fechaPartido, nombreSector, altura, null, idEntrada);
+    }
+
+    private void cancelarReserva(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento, int idEntrada) {
+        Socio socioEncontrado = buscarSocioPorDni(dni);
+        Partido partidoEncontrado = buscarPartidoPorFecha(fechaPartido);
+
+        if (socioEncontrado != null && partidoEncontrado != null) {
+            if (numeroAsiento != null) {
+                socioEncontrado.cancelarEntrada(partidoEncontrado, nombreSector, altura, numeroAsiento, idEntrada);
+            } else {
+                socioEncontrado.cancelarEntrada(partidoEncontrado, nombreSector, altura, idEntrada);
+            }
+        } else {
+            System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");
+        }
+    }
+
+
+    public void listarSocios() {
+        for (Socio socio: socios) {
+            System.out.println(socio.toString());;
+        }
+    }
+
+    public void listarEntradasSocio(int dni) {
+        Socio socioEncontrado = buscarSocioPorDni(dni);
+        if (socioEncontrado != null) {
+            socioEncontrado.listarEntradas();
+        }
+    }
+
+
     private void realizarReserva(int dni, String fechaPartido, String nombreSector, String altura, Integer numeroAsiento) {
         Socio socioEncontrado = buscarSocioPorDni(dni);
         Partido partidoEncontrado = buscarPartidoPorFecha(fechaPartido);
@@ -59,8 +98,6 @@ public class Sistema {
             System.out.println("No se pudo completar la reserva. Verifique el DNI o la fecha del partido.");
         }
     }
-
-
 
 
     private Socio buscarSocioPorDni(int dni) {
