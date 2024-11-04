@@ -4,7 +4,6 @@ abstract class Altura{
     -precio: double
     +abstract reservarLugares(numeroAsiento: Integer): boolean
     +abstract liberarLugares(numeroAsiento: Integer): boolean
-
 }
 
 class AlturaNumerada{}
@@ -54,7 +53,6 @@ class Entrada{
     -numeroAsiento: Integer
     -precio: double
     -fecha: Date
-
 }
 
 enum EstadoEntrada {
@@ -68,6 +66,17 @@ class Socio {
     - nombre: String;
     - apellido: String;
     - cuotaPaga: boolean
+
+    +sacarEntrada(partido: Partido, nombreSector: String, altura: String, numeroAsiento: Integer): void
+    +sacarEntrada(partido: Partido, nombreSector: String, altura: String): void
+    +cancelarEntrada(partido: Partido, nombreSector: String, altura: String, numeroAsiento: Integer, idEntrada: int): void
+    +cancelarEntrada(partido: Partido, nombreSector: String, altura: String, idEntrada: int): void
+    +listarEntradas(): void
+}
+
+class ListaNegra {
+    -listaNegra: Set<String>
+    +esSocioValido(dni: int): boolean
 }
 
 class Sistema{
@@ -75,30 +84,35 @@ class Sistema{
     +crearSocio(dni: int, nombre: String, apellido: String): void
     +sacarEntrada(dni: int, fecha: String, nombreSector: String, altura: String, numeroAsiento: Integer): void
     +sacarEntrada(dni: int, fecha: String, nombreSector: String, altura: String): void
+    +cancelarEntrada(dni: int, fecha: String, nombreSector: String, altura: String, numeroAsiento: Integer, idEntrada: int): void
+    +cancelarEntrada(dni: int, fecha: String, nombreSector: String, altura: String, idEntrada: int): void
+    +listarSocios(): void
+    +listarEntradasSocio(dni: int): void
+    +listarPartidos(): void
 }
 
+Sistema "1  " *-- "1..*   " Partido
+Sistema "1  " *-- "1..*   " Socio
+Sistema "1  " *-- "1      " ListaNegra
 
-Sistema *-- Partido
-Sistema *-- Socio
-
-Socio o-- Entrada
+Socio "1  " o-- "0..*  " Entrada
 
 Altura <|-- AlturaNumerada
 Altura <|-- AlturaSinNumerar
 
-Altura --* Sector
-AlturaNumerada *-- Asiento
+Altura --* "1..*            " Sector
+AlturaNumerada *-- "1..*   " Asiento
 
 Sector <|-- Belgrano
 Sector <|-- SanMartin
 Sector <|-- Sivori
 Sector <|-- Centenario
 
-Estadio *-- Sector
+Estadio "1   " *-- "1..*  " Sector
 
-Entrada *--o Partido
+Entrada "1..*   "*--o "1" Partido
 Entrada --> EstadoEntrada
 
-Partido *-- Estadio
+Partido "1..*  " *-- "1   " Estadio
 
 @enduml

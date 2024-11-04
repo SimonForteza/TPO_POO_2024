@@ -1,5 +1,6 @@
 package org.example.model;
 
+import javax.xml.xpath.XPathEvaluationResult;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +45,49 @@ public class Socio {
         System.out.println("La cuota no está al dia");
     }
 
+    public void cancelarEntrada(Partido partido, String nombreSector, String altura, Integer numeroAsiento, int idEntrada) {
+        partido.liberarEstadio(nombreSector, altura, numeroAsiento);
+
+        for (Entrada entrada: entradasSacadas) {
+            if (entrada.getId() == idEntrada) {
+                entrada.cancelarEntrada(idEntrada);
+                entradasSacadas.remove(entrada);
+                break;
+            }
+        }
+    }
+
+    public void cancelarEntrada(Partido partido, String nombreSector, String altura, int idEntrada) {
+        partido.liberarEstadio(nombreSector, altura);
+
+        for (Entrada entrada: entradasSacadas) {
+            if (entrada.getId() == idEntrada) {
+                entrada.cancelarEntrada(idEntrada);
+                entradasSacadas.remove(entrada);
+                break;
+            }
+        }
+    }
+
+    public void listarEntradas() {
+        for (Entrada entrada: entradasSacadas) {
+            System.out.println(entrada.toString());
+        }
+    }
+
+
     public int getDni() {
         return dni;
+    }
+
+    @Override
+    public String toString() {
+        return "Socio{" +
+                "numeroSocio=" + numeroSocio +
+                ", dni=" + dni +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", cuotaPaga=" + cuotaPaga +
+                '}';
     }
 }
