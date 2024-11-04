@@ -45,4 +45,11 @@ public class Entrada {
         partido.agregarEntrada(this);
     }
 
+    public void cancelarEntrada(int id) {
+        partido.cancelarEntrada(id);
+    }
+
+    public int getId() {
+        return id;
+    }
 }

@@ -70,6 +70,11 @@ class Socio {
     - cuotaPaga: boolean
 }
 
+class ListaNegra {
+    -listaNegra: Set<String>
+    +esSocioValido(dni: int): boolean
+}
+
 class Sistema{
     +CrearPartido(equipoLocal: String, equipoVisitante: String, precioBase: int, fechaPartido: String): void
     +crearSocio(dni: int, nombre: String, apellido: String): void
@@ -80,6 +85,7 @@ class Sistema{
 
 Sistema *-- Partido
 Sistema *-- Socio
+Sistema *-- ListaNegra
 
 Socio o-- Entrada
 

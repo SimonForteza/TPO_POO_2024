@@ -44,6 +44,14 @@ public class Partido {
         entradas.add(entrada);
     }
 
+    public void cancelarEntrada(int idEntrada) {
+        for (Entrada entrada: entradas) {
+            if (entrada.getId() == idEntrada) {
+                entradas.remove(entrada);
+            }
+        }
+    }
+
     public String getEquipoLocal() {
         return equipoLocal;
     }

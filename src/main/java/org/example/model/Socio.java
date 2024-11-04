@@ -1,5 +1,6 @@
 package org.example.model;
 
+import javax.xml.xpath.XPathEvaluationResult;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +43,26 @@ public class Socio {
             return;
         }
         System.out.println("La cuota no está al dia");
+    }
+
+    public void cancelarEntrada(Partido partido, String nombreSector, String altura, Integer numeroAsiento, int idEntrada) {
+        partido.liberarEstadio(nombreSector, altura, numeroAsiento);
+
+        for (Entrada entrada: entradasSacadas) {
+            if (entrada.getId() == idEntrada) {
+                entrada.cancelarEntrada(idEntrada);
+            }
+        }
+    }
+
+    public void cancelarEntrada(Partido partido, String nombreSector, String altura, int idEntrada) {
+        partido.liberarEstadio(nombreSector, altura);
+
+        for (Entrada entrada: entradasSacadas) {
+            if (entrada.getId() == idEntrada) {
+                entrada.cancelarEntrada(idEntrada);
+            }
+        }
     }
 
     public int getDni() {
